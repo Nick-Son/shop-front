@@ -6,18 +6,18 @@ function Wishlist({
   onRemoveProductFromWishlist
 }) { 
   return (
-    <div className='mb-3'>
+    <div className='mb-3 wishlist'>
       <h2>Wishlist</h2>
       {
         products.map((product) => (
-          <Fragment key={ product._id }>
+          <div key={ product._id } className="wishlist-item">
             <Product
               {...product}
               onRemoveFromWishlist={ () => {
                 onRemoveProductFromWishlist(product._id)
               } }
             />
-          </Fragment>
+          </div>
         ))
       }
     </div>

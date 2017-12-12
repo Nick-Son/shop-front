@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
+import logo from './face.png';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import ProductList from './components/ProductList'
@@ -95,67 +97,91 @@ class App extends Component {
     const signedIn = !!decodedToken
 
     return (
-      <div className="App">
-        <h1>Yarra</h1>
-        <h2 className='mb-3'>Now Delivering: Shipping trillions of new products</h2>
-        {
-          signedIn ? (
-            <div className='mb-3'>
-              <p>Email: { decodedToken.email }</p>
-              <p>Signed in at: { new Date(decodedToken.iat * 1000).toISOString() }</p>
-              <p>Expire at: { new Date(decodedToken.exp * 1000).toISOString() }</p>
-              <button onClick={ this.onSignOut }>
-                Sign Out
-              </button>
-            </div>
-          ) : (
-            <div>
-              <h2>Sign In</h2>
-              <SignInForm
-                onSignIn={ this.onSignIn }
-              />
+      <Router>
+        <div className="App">
+        <Route path='/' exact render={ () => (
+        <Fragment>
+          <header className="App-header">
+            <h1>Shop Front</h1>
+          </header>
+            <h2 className='mb-3'>Now Delivering The Goods</h2>
+        </Fragment>
 
-              <h2>Sign Up</h2>
-              <SignUpForm
-                onSignUp={ this.onSignUp }
-              />
-            </div>
-          )
-        }
-        { products &&
-          <ProductList
-            products={ products }
-            editedProductID={ editedProductID }
-            onEditProduct={ this.onBeginEditingProduct }
-            onAddProductToWishlist={ this.onAddProductToWishlist }
-            onRemoveProductFromWishlist={ this.onRemoveProductFromWishlist }
-            renderEditForm={ (product) => (
-              <div className='ml-3'>
-                <ProductForm
-                  initialProduct={ product }
-                  submitTitle='Update Product'
-                  onSubmit={ this.onUpdateEditedProduct }
+        )}  />
+
+        <Route path='/signin' exact render={ () => (
+          <Fragment>
+            <h2>Sign In</h2>
+                  <SignInForm
+                    onSignIn={ this.onSignIn }
+                  />
+          </Fragment>
+        )} />
+          {
+            signedIn ? (
+              <div className='mb-3 login-info'>
+              <p className="mb-3"><strong>Email:</strong></p>
+              <p className="login-info-element mb-2">{ decodedToken.email }</p>
+              <p className="mb-3"><strong>Signed in at:</strong></p>
+              <p className="login-info-element mb-2">{ new Date(decodedToken.iat * 1000).toISOString() }</p>                <button onClick={ this.onSignOut }>
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <div>
+                
+                <h2>Sign Up</h2>
+                <SignUpForm
+                  onSignUp={ this.onSignUp }
                 />
               </div>
-            ) }
-          />
-        }
-        { signedIn &&
-          <div className='mb-3'>
-            <h2>Create Product</h2>
-            <ProductForm
-              submitTitle='Create Product'
-              onSubmit={ this.onCreateProduct }
+            )
+          }
+
+          { products &&
+            <ProductList
+              products={ products }
+              editedProductID={ editedProductID }
+              onEditProduct={ this.onBeginEditingProduct }
+              onAddProductToWishlist={ this.onAddProductToWishlist }
+              onRemoveProductFromWishlist={ this.onRemoveProductFromWishlist }
+              renderEditForm={ (product) => (
+                <div className='ml-3'>
+                  <ProductForm
+                    initialProduct={ product }
+                    submitTitle='Update Product'
+                    onSubmit={ this.onUpdateEditedProduct }
+                  />
+                </div>
+              ) }
             />
-          </div>
-        }
-        { signedIn && wishlist &&
-          <Wishlist
-            products={ wishlist.products }
-            onRemoveProductFromWishlist={ this.onRemoveProductFromWishlist }
-          />
-        }
-      </div>
+          }
+
+          { signedIn &&
+            <div className='mb-3'>
+              <h2>Create Product</h2>
+              <ProductForm
+                submitTitle='Create Product'
+                onSubmit={ this.onCreateProduct }
+              />
+            </div>
+          }
+
+          <Route path='/wishlist' exact render={ () => (
+            <Fragment>
+              { signedIn && wishlist &&
+                <Wishlist
+                  products={ wishlist.products }
+                  onRemoveProductFromWishlist={ this.onRemoveProductFromWishlist }
+                />
+              }
+            </Fragment>        
+          )} />
+
+          <img src={logo} className="footer-img pulse" alt="logo" />
+          <div className="footer"><em>'I have no idea what I'm doing'</em>  -2017</div>
+        </div>
+      </Router>
     );
   }
 

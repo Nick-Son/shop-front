@@ -8,7 +8,7 @@ function Product({
   onRemoveFromWishlist
 }) { 
   return (
-    <div className='mb-1'>
+    <div className='mb-3 login-info'>
       <h3 onClick={ onEdit }>{ brandName } { name }</h3>
       { onAddToWishlist &&
         <button

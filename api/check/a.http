@@ -1,15 +1,15 @@
 GET http://localhost:7000/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdHJpY2suc21pdGhAY29kZXJhY2FkZW15LmVkdS5hdSIsImlhdCI6MTUxMjUzNDY3MywiZXhwIjoxNTEzMTM5NDczLCJzdWIiOiI1YTI3NTA2MzJkNmEzZDc5ODIwN2VmNjMifQ.zjeQTwytluem7xsesc7JHoUjM-SipTFJHg_nGiWTln4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY2tzb25uZXJAZ21haWwuY29tIiwiaWF0IjoxNTEzMDM2Mzc2LCJleHAiOjE1MTM2NDExNzYsInN1YiI6IjVhMjllNDRlNGMwOTllMWExNTVhMjQ5NiJ9.ml9-1u14GHSn7e54_O0kcsEDNK4yNjDotATCPPGSY0g
 
 ### Register
 POST http://localhost:7000/auth/register
 Content-Type: application/json
 
 {
-  "email": "patrick.smith@coderacademy.edu.au",
-  "firstName": "Patrick",
-  "lastName": "Smith",
-  "password": "password123"
+  "email": "nicksonner@gmail.com",
+  "firstName": "Nick",
+  "lastName": "Sonner",
+  "password": "password"
 }
 
 ### Sign in
@@ -17,13 +17,13 @@ POST http://localhost:7000/auth
 Content-Type: application/json
 
 {
-  "email": "patrick.smith@coderacademy.edu.au",
-  "password": "password123"
+  "email": "nicksonner@gmail.com",
+  "password": "password"
 }
 
 ### Create product
 POST http://localhost:7000/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdHJpY2suc21pdGhAY29kZXJhY2FkZW15LmVkdS5hdSIsImlhdCI6MTUxMjUzNDY3MywiZXhwIjoxNTEzMTM5NDczLCJzdWIiOiI1YTI3NTA2MzJkNmEzZDc5ODIwN2VmNjMifQ.zjeQTwytluem7xsesc7JHoUjM-SipTFJHg_nGiWTln4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY2tzb25uZXJAZ21haWwuY29tIiwiaWF0IjoxNTEzMDM2Mzc2LCJleHAiOjE1MTM2NDExNzYsInN1YiI6IjVhMjllNDRlNGMwOTllMWExNTVhMjQ5NiJ9.ml9-1u14GHSn7e54_O0kcsEDNK4yNjDotATCPPGSY0g
 Content-Type: application/json
 
 {
@@ -33,7 +33,7 @@ Content-Type: application/json
 
 ### Update product
 PUT http://localhost:7000/products/5a28c95edff50e5b800e28ce
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdHJpY2suc21pdGhAY29kZXJhY2FkZW15LmVkdS5hdSIsImlhdCI6MTUxMjUzNDY3MywiZXhwIjoxNTEzMTM5NDczLCJzdWIiOiI1YTI3NTA2MzJkNmEzZDc5ODIwN2VmNjMifQ.zjeQTwytluem7xsesc7JHoUjM-SipTFJHg_nGiWTln4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY2tzb25uZXJAZ21haWwuY29tIiwiaWF0IjoxNTEzMDM2Mzc2LCJleHAiOjE1MTM2NDExNzYsInN1YiI6IjVhMjllNDRlNGMwOTllMWExNTVhMjQ5NiJ9.ml9-1u14GHSn7e54_O0kcsEDNK4yNjDotATCPPGSY0g
 Content-Type: application/json
 
 {
@@ -43,12 +43,12 @@ Content-Type: application/json
 
 ### Read wishlist
 GET http://localhost:7000/wishlist
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdHJpY2suc21pdGhAY29kZXJhY2FkZW15LmVkdS5hdSIsImlhdCI6MTUxMjY5NDQyOCwiZXhwIjoxNTEzMjk5MjI4LCJzdWIiOiI1YTI3NTA2MzJkNmEzZDc5ODIwN2VmNjMifQ.tzEjvcsj3cHCG7t6M7R-ufvmD1ddRj-J5OMapXcz5H8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY2tzb25uZXJAZ21haWwuY29tIiwiaWF0IjoxNTEzMDM2Mzc2LCJleHAiOjE1MTM2NDExNzYsInN1YiI6IjVhMjllNDRlNGMwOTllMWExNTVhMjQ5NiJ9.ml9-1u14GHSn7e54_O0kcsEDNK4yNjDotATCPPGSY0g
 
 ### Add to wishlist
 POST http://localhost:7000/wishlist/products/5a2742308714fc738c09968b
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdHJpY2suc21pdGhAY29kZXJhY2FkZW15LmVkdS5hdSIsImlhdCI6MTUxMjY5NDQyOCwiZXhwIjoxNTEzMjk5MjI4LCJzdWIiOiI1YTI3NTA2MzJkNmEzZDc5ODIwN2VmNjMifQ.tzEjvcsj3cHCG7t6M7R-ufvmD1ddRj-J5OMapXcz5H8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY2tzb25uZXJAZ21haWwuY29tIiwiaWF0IjoxNTEzMDM2Mzc2LCJleHAiOjE1MTM2NDExNzYsInN1YiI6IjVhMjllNDRlNGMwOTllMWExNTVhMjQ5NiJ9.ml9-1u14GHSn7e54_O0kcsEDNK4yNjDotATCPPGSY0g
 
 ### Remove from wishlist
 DELETE http://localhost:7000/wishlist/products/5a2742308714fc738c09968b
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdHJpY2suc21pdGhAY29kZXJhY2FkZW15LmVkdS5hdSIsImlhdCI6MTUxMjY5NDQyOCwiZXhwIjoxNTEzMjk5MjI4LCJzdWIiOiI1YTI3NTA2MzJkNmEzZDc5ODIwN2VmNjMifQ.tzEjvcsj3cHCG7t6M7R-ufvmD1ddRj-J5OMapXcz5H8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY2tzb25uZXJAZ21haWwuY29tIiwiaWF0IjoxNTEzMDM2Mzc2LCJleHAiOjE1MTM2NDExNzYsInN1YiI6IjVhMjllNDRlNGMwOTllMWExNTVhMjQ5NiJ9.ml9-1u14GHSn7e54_O0kcsEDNK4yNjDotATCPPGSY0g
