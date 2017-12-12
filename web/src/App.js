@@ -99,6 +99,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+
         <Route path='/' exact render={ () => (
         <Fragment>
           <header className="App-header">
@@ -106,37 +107,39 @@ class App extends Component {
           </header>
             <h2 className='mb-3'>Now Delivering The Goods</h2>
         </Fragment>
-
-        )}  />
+        )} />
 
         <Route path='/signin' exact render={ () => (
           <Fragment>
             <h2>Sign In</h2>
-                  <SignInForm
-                    onSignIn={ this.onSignIn }
-                  />
+            <SignInForm
+              onSignIn={ this.onSignIn }
+            />
           </Fragment>
         )} />
-          {
-            signedIn ? (
-              <div className='mb-3 login-info'>
+
+        <Route path='/signup' exact render={ () => (
+          <Fragment>
+            <h2>Sign Up</h2>
+            <SignUpForm
+              onSignUp={ this.onSignUp }
+            />
+          </Fragment>
+        )} />
+
+        <Route path='/account' exact render={ () => (
+          <Fragment>  
+            <div className='mb-3 login-info'>
               <p className="mb-3"><strong>Email:</strong></p>
               <p className="login-info-element mb-2">{ decodedToken.email }</p>
               <p className="mb-3"><strong>Signed in at:</strong></p>
               <p className="login-info-element mb-2">{ new Date(decodedToken.iat * 1000).toISOString() }</p>                <button onClick={ this.onSignOut }>
                   Sign Out
                 </button>
-              </div>
-            ) : (
-              <div>
-                
-                <h2>Sign Up</h2>
-                <SignUpForm
-                  onSignUp={ this.onSignUp }
-                />
-              </div>
-            )
-          }
+            </div>
+          </Fragment>
+        )} />
+          
 
           { products &&
             <ProductList
