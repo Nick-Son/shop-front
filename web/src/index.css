@@ -100,10 +100,39 @@ h3 {
 
 .wishlist {
   margin: 20px;
+  border: 2px solid gold;
+  padding: 5px;
+  border-radius: 15px;
 }
 
 .wishlist-item {
   padding: 5px;
+  border-radius: 15px;
+}
+
+nav.primary ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  background:rgb(59, 57, 57);
+  justify-content: center;
   border: 2px solid gold;
   border-radius: 15px;
+  margin: 10px 0;
+}
+
+nav.primary a {
+  padding: 1rem 0.5rem;
+  display: block;
+  color: gold;
+  text-decoration: none;
+}
+
+nav.primary img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: block;
+  background: gold;
 }
