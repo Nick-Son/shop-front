@@ -8,6 +8,7 @@ import ProductList from './components/ProductList'
 import ProductForm from './components/ProductForm'
 import PrimaryNav from './components/PrimaryNav'
 import Wishlist from './components/Wishlist'
+import Error from './components/Error'
 import { signIn, signUp, signOutNow } from './api/auth'
 import { getDecodedToken } from './api/token'
 import { listProducts, createProduct, updateProduct } from './api/products'
@@ -15,6 +16,7 @@ import { listWishlist, addProductToWishlist, removeProductFromWishlist } from '.
 
 class App extends Component {
   state = {
+    error: null,
     decodedToken: getDecodedToken(), // Restore the previous signed in data
     products: null,
     editedProductID: null,
@@ -26,12 +28,18 @@ class App extends Component {
       .then((decodedToken) => {
         this.setState({ decodedToken })
       })
+      .catch((error) => {
+        this.setState({error})
+      })
   }
 
   onSignUp = ({ email, password, firstName, lastName }) => {
     signUp({ email, password, firstName, lastName })
       .then((decodedToken) => {
         this.setState({ decodedToken })
+      })
+      .catch((error) => {
+        this.setState({error})
       })
   }
 
@@ -50,6 +58,9 @@ class App extends Component {
             products: updatedProducts
           }
         })
+      })
+      .catch((error) => {
+        this.setState({error})
       })
   }
 
@@ -77,12 +88,18 @@ class App extends Component {
           }
         })
       })
+      .catch((error) => {
+        this.setState({error})
+      })
   }
 
   onAddProductToWishlist = (productID) => {
     addProductToWishlist(productID)
       .then((wishlist) => {
         this.setState({ wishlist })
+      })
+      .catch((error) => {
+        this.setState({error})
       })
   }
 
@@ -91,10 +108,17 @@ class App extends Component {
       .then((wishlist) => {
         this.setState({ wishlist })
       })
+      .catch((error) => {
+        this.setState({error})
+      })
+  }
+
+  dontTouchMe = () => {
+    return <p className="error-message">Dont Touch Me!</p>
   }
 
   render() {
-    const { decodedToken, products, editedProductID, wishlist } = this.state
+    const { error, decodedToken, products, editedProductID, wishlist } = this.state
     const signedIn = !!decodedToken
 
     const requireAuth = (render) => (props) => (
@@ -109,31 +133,45 @@ class App extends Component {
       <Router>
         <div className="App">
         <PrimaryNav signedIn={signedIn}/>
+
+        { error &&
+          <Error error={error} />
+        }
+
         <Route path='/' exact render={ () => (
         <Fragment>
           <header className="App-header">
-            <h1>Shop Front</h1>
+            <h1>Kobra Kai</h1>
           </header>
-            <h2 className='mb-3'>Now Delivering The Goods</h2>
+            {/* <h2 className='mb-3'>Now Delivering The Goods through Space & Time</h2> */}
+            <h2 className='mb-3'>Strike First, Strike Hard, No Mercy</h2>
         </Fragment>
         )} />
 
         <Route path='/signin' exact render={ () => (
+          signedIn ? (
+            <Redirect to='/products' />
+          ) : (
           <Fragment>
             <h2>Sign In</h2>
             <SignInForm
               onSignIn={ this.onSignIn }
             />
           </Fragment>
+          )
         )} />
 
         <Route path='/signup' exact render={ () => (
+          signedIn ? (
+            <Redirect to='/products' />
+          ) : (
           <Fragment>
             <h2>Sign Up</h2>
             <SignUpForm
               onSignUp={ this.onSignUp }
             />
           </Fragment>
+          )
         )} />
 
         <Route path='/account' exact render={ requireAuth(() => (
@@ -151,9 +189,10 @@ class App extends Component {
           
         <Route path='/products' exact render={ () => (
           <Fragment>
-          { products &&
+          { products && wishlist &&
             <ProductList
               products={ products }
+              productsInWishlist={wishlist.products}
               editedProductID={ editedProductID }
               onEditProduct={ this.onBeginEditingProduct }
               onAddProductToWishlist={ this.onAddProductToWishlist }
@@ -199,7 +238,7 @@ class App extends Component {
 
           ))} />
 
-          <img src={logo} className="footer-img pulse" alt="logo" />
+          <img src={logo} className="footer-img pulse" alt="logo" onClick={this.dontTouchMe}/>
           <div className="footer"><em>'I have no idea what I'm doing'</em>  -2017</div>
         </div>
       </Router>
@@ -207,6 +246,10 @@ class App extends Component {
   }
 
   load() {
+    const saveError = (error) => {
+      this.setState({error})
+    }
+
     const { decodedToken } = this.state
     if (decodedToken) {
       listProducts()
@@ -214,6 +257,7 @@ class App extends Component {
           this.setState({ products })
         })
         .catch((error) => {
+          this.setState({ error })
           console.error('error loading products', error)
         })
       
@@ -222,6 +266,7 @@ class App extends Component {
           this.setState({ wishlist })
         })
         .catch((error) => {
+          this.setState({ error }) 
           console.error('error loading wishlist', error)
         })
     }

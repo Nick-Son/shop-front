@@ -13,12 +13,12 @@
   border-radius: 15px;
   border: 4px solid gold;
   margin-top: 20%;
-  animation: App-logo-spin infinite 30s linear;
+  animation: App-logo-spin infinite 100s linear;
 }
 
 @keyframes App-logo-spin {
   from { transform: rotateX(0deg); }
-  to { transform: rotateX(15800deg); }
+  to { transform: rotateX(10000deg); }
   /* from { transform: rotate(0deg); } */
   /* to { transform: rotate(14800deg); } */
 }
