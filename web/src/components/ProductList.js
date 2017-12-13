@@ -10,6 +10,8 @@ function ProductList({
   onRemoveProductFromWishlist,
   renderEditForm
 }) { 
+  const hasWishlist = !!productsInWishlist 
+
   return (
     <div className='mb-3'>
       <h2>Products</h2>
@@ -22,14 +24,14 @@ function ProductList({
             }
           } ) */}
 
-          const inWishlist = !!productsInWishlist.find((productInWishlist) => {
+          const inWishlist = !!productsInWishlist && productsInWishlist.some((productInWishlist) => {
             // Found a matching product
             // i.e this 'product' is in the wishlist
             return (productInWishlist._id === product._id)
           })
 
-          const showAddToWishlist = !inWishlist
-          const showRemoveFromWishlist = inWishlist
+          const showAddToWishlist = hasWishlist && !inWishlist
+          const showRemoveFromWishlist = hasWishlist && inWishlist
 
           return (
             <Fragment key={ product._id }>

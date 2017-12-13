@@ -142,10 +142,10 @@ class App extends Component {
           <Route path='/' exact render={ () => (
           <Fragment>
             <header className="App-header">
-              <h1>Kobra Kai</h1>
+              <h1>Shop Front</h1>
             </header>
-              {/* <h2 className='mb-3'>Now Delivering The Goods through Space & Time</h2> */}
-              <h2 className='mb-3'>Strike First, Strike Hard, No Mercy</h2>
+              <h2 className='mb-3'>Now Delivering The Goods through Space & Time</h2>
+              
           </Fragment>
           )} />
 
@@ -190,10 +190,10 @@ class App extends Component {
             
           <Route path='/products' exact render={ () => (
             <Fragment>
-            { products && wishlist &&
+            { products &&
               <ProductList
                 products={ products }
-                productsInWishlist={wishlist.products}
+                productsInWishlist={wishlist ? wishlist.products : null}
                 editedProductID={ editedProductID }
                 onEditProduct={ this.onBeginEditingProduct }
                 onAddProductToWishlist={ this.onAddProductToWishlist }
@@ -256,16 +256,19 @@ class App extends Component {
       this.setState({error})
     }
 
+    listProducts()
+      .then((products) => {
+        this.setState({ products })
+      })
+      .catch((error) => {
+        this.setState({ error })
+        console.error('error loading products', error)
+      })
+
     const { decodedToken } = this.state
-    if (decodedToken) {
-      listProducts()
-        .then((products) => {
-          this.setState({ products })
-        })
-        .catch((error) => {
-          this.setState({ error })
-          console.error('error loading products', error)
-        })
+    const signedIn = !!decodedToken
+
+    if (signedIn) {
       
       listWishlist()
         .then((wishlist) => {
@@ -278,7 +281,6 @@ class App extends Component {
     }
     else {
       this.setState({
-        products: null,
         wishlist: null
       })
     }
