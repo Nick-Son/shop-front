@@ -5,7 +5,7 @@ Deployed to:
 
 https://shop-front.netlify.com/
 
-*A simple shop front app, with authentication, built with React and Node
+*A simple shop front app, with authentication, built with React and Node*
 
 ## Development Steps
 
