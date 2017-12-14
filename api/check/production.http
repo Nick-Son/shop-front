@@ -1,0 +1,27 @@
+@base_url = https://yarra-api-wzugoggkzb.now.sh
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pY2tzb25uZXJAZ21haWwuY29tIiwiaWF0IjoxNTEzMjExNDU2LCJleHAiOjE1MTM4MTYyNTYsInN1YiI6IjVhMzFjNjQwNjc2ZjJlMDA5ZWI3Y2IwNCJ9.77iPQ-vAq7H9WKgo7rLhDIvg9L2ujvkSsd_8H3uhSKg
+### List products
+
+POST {{base_url}}/products
+
+### Create products
+
+POST {{base_url}}/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "brandName": "Google",
+  "name": "Pixelbook"
+}
+
+### Register
+POST {{base_url}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "nicksonner@gmail.com",
+  "firstName": "Nick",
+  "lastName": "Sonner",
+  "password": "password"
+}

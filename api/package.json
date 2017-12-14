@@ -23,6 +23,9 @@
     "dev": "nodemon server.js",
     "seed": "node models/seeds.js",
     "drop": "node models/drop.js",
-    "reset": "npm run drop && npm run seed"
+    "reset": "npm run drop && npm run seed",
+    "start": "node server.js",
+    "deploy": "now -E production.env",
+    "destroy": "now rm yarra-api"
   }
 }
