@@ -245,7 +245,7 @@ class App extends Component {
 
           </Switch>  
           <img src={logo} className="footer-img pulse" alt="logo" onClick={this.dontTouchMe}/>
-          <div className="footer"><em>'I have no idea what I'm doing'</em>  -2017</div>
+          <div className="footer"><em>Made with <span className="heart"> ❤</span>...and React + Node</em></div>
         </div>
       </Router>
     );

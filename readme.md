@@ -1,11 +1,11 @@
 # Shop-Front App
 
-## Models
+![](/docs/screen.png)
+Deployed to:
 
-### Products
-- name: string
-- brandName: string
+https://shop-front.netlify.com/
 
+*A simple shop front app, with authentication, built with React and Node
 
 ## Development Steps
 
